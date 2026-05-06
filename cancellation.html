@@ -199,7 +199,7 @@
 
     .form-wrapper iframe {
       width: 100%;
-      min-height: 1400px;
+      min-height: 1980px;
       border: none;
       display: block;
       background: #fff;
@@ -219,8 +219,10 @@
     @media (max-width: 600px) {
       .video-hero   { padding: 100px 18px 56px; }
       .notice-box   { padding: 24px 20px; }
-      .form-section { padding: 56px 18px 72px; }
-      .form-wrapper iframe { min-height: 1600px; }
+      .form-section { padding: 56px 0 72px; }
+      .form-intro   { padding: 0 18px; }
+      .form-wrapper { border-radius: 0; border-left: none; border-right: none; }
+      .form-wrapper iframe { min-height: 2200px; }
     }
   </style>
 </head>
@@ -271,10 +273,13 @@
     </div>
 
     <div class="form-wrapper">
-      <!-- REPLACE the src below with your Google Form embed URL -->
       <iframe
-        src="GOOGLE_FORM_EMBED_URL"
-        title="Product Architect Cancellation Form">
+        src="https://docs.google.com/forms/d/e/1FAIpQLScM1L5IMjwyh7EwpyZrmV_bQyQllCxt7lGHWAoE_0pGhvthAw/viewform?embedded=true"
+        title="Product Architect Cancellation / Pause Request"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0">
+        Loading…
       </iframe>
     </div>
   </section>
