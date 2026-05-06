@@ -166,23 +166,27 @@ nav {
   margin: 16px auto 48px;
 }
 
-/* ─── TESTIMONIAL SLIDER ─── */
-.testi-slider { position:relative; overflow:hidden; }
-.testi-track {
-  display:flex;
-  transition: transform .45s cubic-bezier(.4,0,.2,1);
-  will-change: transform;
+/* ─── TESTIMONIALS GRID ─── */
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
 }
+@media(max-width:860px){ .testi-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:560px){ .testi-grid { grid-template-columns: 1fr; } }
+
 .testi-card {
-  min-width: 100%;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
-  padding: 36px 32px 28px;
+  padding: 28px 24px 22px;
   display: flex; flex-direction: column;
   position: relative;
   box-sizing: border-box;
+  transition: border-color .25s, transform .25s;
 }
+.testi-card:hover { border-color:rgba(10,191,188,0.35); transform:translateY(-3px); }
 .testi-card::before {
   content:'\201C';
   position:absolute; top:16px; right:24px;
@@ -216,28 +220,26 @@ nav {
 }
 .testi-role { font-size:13px; color:var(--grey-mid); }
 
-/* Slider controls */
-.testi-controls {
-  display:flex; align-items:center; justify-content:center;
-  gap:16px; margin-top:28px;
+/* Screenshot testimonials */
+.testi-screenshots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 8px;
 }
-.testi-btn {
-  width:42px; height:42px; border-radius:50%;
-  border:2px solid rgba(10,191,188,0.3);
-  background:transparent; color:var(--teal);
-  font-size:18px; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:background .2s, border-color .2s;
+.testi-ss-item {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform .25s, box-shadow .25s;
 }
-.testi-btn:hover { background:rgba(10,191,188,0.1); border-color:var(--teal); }
-.testi-dots { display:flex; gap:8px; }
-.testi-dot {
-  width:8px; height:8px; border-radius:50%;
-  background:rgba(255,255,255,0.2);
-  cursor:pointer; transition:background .2s, transform .2s;
-  border:none;
-}
-.testi-dot.active { background:var(--teal); transform:scale(1.3); }
+.testi-ss-item:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.4); }
+.testi-ss-item img { width:100%; display:block; }
+@media(max-width:640px){ .testi-screenshots { grid-template-columns: repeat(2,1fr); } }
+
+
+
 
 /* ─── PHOTO GALLERY ─── */
 .photo-gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -582,84 +584,82 @@ footer {
 </section>
 
 
-<!-- ─── TESTIMONIALS SLIDER ─── -->
+<!-- ─── TESTIMONIALS ─── -->
 <section class="section section--navy">
   <div class="section-inner--wide">
     <span class="section-label">What Readers Say</span>
     <h2 class="section-title">Here are what others said about our book</h2>
     <div class="section-rule"></div>
 
-    <div class="testi-slider" id="testiSlider">
-      <div class="testi-track" id="testiTrack">
+    <!-- Text testimonial cards -->
+    <div class="testi-grid">
 
-        <div class="testi-card">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-text">"He has documented his genuine, authentic marketing methods&hellip; I got 5 copies immediately, firm believer in supporting good work."</p>
-          <div class="testi-author">
-            <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-melvin.jpg" alt="Melvin Soh" loading="lazy"></div>
-            <div><div class="testi-name">Melvin Soh</div><div class="testi-role">Founder of X-factor &middot; 7 &amp; 8-figure Business Coach</div></div>
-          </div>
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"He has documented his genuine, authentic marketing methods&hellip; I got 5 copies immediately, firm believer in supporting good work."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-melvin.jpg" alt="Melvin Soh" loading="lazy"></div>
+          <div><div class="testi-name">Melvin Soh</div><div class="testi-role">Founder of X-factor &middot; 7 &amp; 8-figure Business Coach</div></div>
         </div>
-
-        <div class="testi-card" style="padding:0; border:1px solid rgba(10,191,188,0.2); overflow:hidden;">
-          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/photo-people2.jpg"
-               alt="John with community members" loading="lazy"
-               style="width:100%; height:100%; object-fit:cover; display:block; border-radius:13px;">
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-text">"This book shows that authenticity isn&rsquo;t just morally superior but strategically advantageous. John demo how being genuinely yourself attracts the right clients."</p>
-          <div class="testi-author">
-            <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-zee.jpg" alt="Zee &amp; Jonathan" loading="lazy"></div>
-            <div><div class="testi-name">Zee &amp; Jonathan</div><div class="testi-role">Venture Capitalist &middot; Expansion Strategists, Global Markets</div></div>
-          </div>
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-text">"This book is like having a good friend explain how to run a business while being yourself authentically. He shares his personal stories &mdash; the good and messy parts &mdash; which makes it feel so real and honest."</p>
-          <div class="testi-author">
-            <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-shuling.jpg" alt="Shu Ling" loading="lazy"></div>
-            <div><div class="testi-name">Shu Ling</div><div class="testi-role">English Language Specialist</div></div>
-          </div>
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-text">"Each chapter encouraged me to reflect, evaluate, and refine how I can remain true to myself while attracting the right customers."</p>
-          <div class="testi-author">
-            <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-siewfong.jpg" alt="Siew Fong" loading="lazy"></div>
-            <div><div class="testi-name">Siew Fong</div><div class="testi-role">Small Business Owner</div></div>
-          </div>
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-text">"Am impressed how much it covered."</p>
-          <div class="testi-author">
-            <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-lew.jpg" alt="Lew" loading="lazy"></div>
-            <div><div class="testi-name">Lew</div><div class="testi-role">Digital Marketing Specialist</div></div>
-          </div>
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testi-text">"Chapter 5 alone is worth the price if you ever need to get on a call and close with clients."</p>
-          <div class="testi-author">
-            <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-agnes.jpg" alt="Agnes" loading="lazy"></div>
-            <div><div class="testi-name">Agnes</div><div class="testi-role">Boston, United States</div></div>
-          </div>
-        </div>
-
       </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"This book shows that authenticity isn&rsquo;t just morally superior but strategically advantageous. John demo how being genuinely yourself attracts the right clients."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-zee.jpg" alt="Zee &amp; Jonathan" loading="lazy"></div>
+          <div><div class="testi-name">Zee &amp; Jonathan</div><div class="testi-role">Venture Capitalist &middot; Expansion Strategists, Global Markets</div></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"This book is like having a good friend explain how to run a business while being yourself authentically. He shares his personal stories &mdash; the good and messy parts &mdash; which makes it feel so real and honest."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-shuling.jpg" alt="Shu Ling" loading="lazy"></div>
+          <div><div class="testi-name">Shu Ling</div><div class="testi-role">English Language Specialist</div></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"Each chapter encouraged me to reflect, evaluate, and refine how I can remain true to myself while attracting the right customers."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-siewfong.jpg" alt="Siew Fong" loading="lazy"></div>
+          <div><div class="testi-name">Siew Fong</div><div class="testi-role">Small Business Owner</div></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"Am impressed how much it covered."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-lew.jpg" alt="Lew" loading="lazy"></div>
+          <div><div class="testi-name">Lew</div><div class="testi-role">Digital Marketing Specialist</div></div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">"Chapter 5 alone is worth the price if you ever need to get on a call and close with clients."</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testimonial-agnes.jpg" alt="Agnes" loading="lazy"></div>
+          <div><div class="testi-name">Agnes</div><div class="testi-role">Boston, United States</div></div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="testi-controls">
-      <button class="testi-btn" id="testiPrev" aria-label="Previous">&#8592;</button>
-      <div class="testi-dots" id="testiDots"></div>
-      <button class="testi-btn" id="testiNext" aria-label="Next">&#8594;</button>
+    <!-- Screenshot testimonials -->
+    <div class="testi-screenshots">
+      <div class="testi-ss-item"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testi-ss1.png" alt="Testimonial screenshot" loading="lazy"></div>
+      <div class="testi-ss-item"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testi-ss3.jpg" alt="Testimonial screenshot" loading="lazy"></div>
+      <div class="testi-ss-item"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testi-ss4.png" alt="Testimonial screenshot" loading="lazy"></div>
+      <div class="testi-ss-item"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testi-ss5.png" alt="Testimonial screenshot" loading="lazy"></div>
+      <div class="testi-ss-item"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testi-ss6.png" alt="Testimonial screenshot" loading="lazy"></div>
+      <div class="testi-ss-item"><img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testi-ss7.png" alt="Testimonial screenshot" loading="lazy"></div>
     </div>
+
   </div>
 </section>
 
@@ -924,55 +924,7 @@ footer {
 </footer>
 
 
-<script>
-(function(){
-  const track = document.getElementById('testiTrack');
-  const dots  = document.getElementById('testiDots');
-  const prev  = document.getElementById('testiPrev');
-  const next  = document.getElementById('testiNext');
-  if(!track) return;
 
-  const cards = track.querySelectorAll('.testi-card');
-  const total = cards.length;
-  let cur = 0, startX = 0, isDragging = false;
-
-  // Build dots
-  cards.forEach((_,i) => {
-    const d = document.createElement('button');
-    d.className = 'testi-dot' + (i===0?' active':'');
-    d.setAttribute('aria-label','Slide '+(i+1));
-    d.addEventListener('click',() => go(i));
-    dots.appendChild(d);
-  });
-
-  function go(n){
-    cur = (n + total) % total;
-    track.style.transform = 'translateX(-' + (cur*100) + '%)';
-    dots.querySelectorAll('.testi-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
-  }
-
-  prev.addEventListener('click',() => go(cur-1));
-  next.addEventListener('click',() => go(cur+1));
-
-  // Touch / swipe
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-  track.addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if(Math.abs(dx) > 40) go(dx < 0 ? cur+1 : cur-1);
-  }, {passive:true});
-
-  // Mouse drag
-  track.addEventListener('mousedown', e => { startX = e.clientX; isDragging = true; });
-  track.addEventListener('mouseup',   e => {
-    if(!isDragging) return; isDragging = false;
-    const dx = e.clientX - startX;
-    if(Math.abs(dx) > 40) go(dx < 0 ? cur+1 : cur-1);
-  });
-
-  // Auto-advance every 5s
-  setInterval(() => go(cur+1), 5000);
-})();
-</script>
 
 </body>
 </html>
