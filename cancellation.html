@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cancellation / Pause — Product Architect Coaching</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pac-dark:     #0A0F1C;
+      --pac-navy:     #002D6A;
+      --pac-navy-mid: #0D2250;
+      --pac-teal:     #0ABFBC;
+      --white:        #FFFFFF;
+      --soft-grey:    #B8C4D4;
+      --mid-grey:     #6B7A96;
+      --font-head:    'Montserrat', sans-serif;
+      --font-body:    'Lato', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--pac-dark);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.2; }
+    a { color: var(--pac-teal); text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10, 15, 28, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(11,191,188,0.15);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--white);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-logo span { color: var(--pac-teal); }
+
+    /* ── HERO / VIDEO SECTION ── */
+    .video-hero {
+      padding: 116px 24px 72px;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(11,191,188,0.1) 0%, transparent 65%),
+        linear-gradient(180deg, #0A0F1C 0%, #0D2250 100%);
+      text-align: center;
+    }
+
+    .notice-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f47676;
+      border: 1px solid rgba(244,118,118,0.35);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 28px;
+    }
+
+    .video-hero h1 {
+      font-size: clamp(26px, 4vw, 46px);
+      font-weight: 900;
+      max-width: 760px;
+      margin: 0 auto 16px;
+      line-height: 1.2;
+    }
+
+    .video-hero h1 span { color: var(--pac-teal); }
+
+    .video-hero .lead {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--soft-grey);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+
+    .video-embed {
+      max-width: 760px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(11,191,188,0.2);
+      aspect-ratio: 16/9;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── NOTICE BOX ── */
+    .notice-section {
+      padding: 56px 24px;
+      background: var(--pac-navy-mid);
+    }
+
+    .notice-box {
+      max-width: 760px;
+      margin: 0 auto;
+      background: rgba(244,118,118,0.06);
+      border: 1px solid rgba(244,118,118,0.25);
+      border-left: 4px solid #f47676;
+      border-radius: 12px;
+      padding: 32px 36px;
+    }
+
+    .notice-box h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #f47676;
+      margin-bottom: 16px;
+    }
+
+    .notice-box ul {
+      list-style: none;
+    }
+
+    .notice-box ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--soft-grey);
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .notice-box ul li::before {
+      content: "⚠";
+      flex-shrink: 0;
+      font-size: 14px;
+      margin-top: 3px;
+    }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      padding: 72px 24px 96px;
+      background: var(--pac-dark);
+    }
+
+    .form-intro {
+      max-width: 760px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .form-intro h2 {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .form-intro p {
+      color: var(--soft-grey);
+      font-size: 17px;
+    }
+
+    .form-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(11,191,188,0.15);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+
+    .form-wrapper iframe {
+      width: 100%;
+      min-height: 1400px;
+      border: none;
+      display: block;
+      background: #fff;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060a12;
+      border-top: 1px solid rgba(11,191,188,0.1);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 14px;
+      color: var(--mid-grey);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .video-hero   { padding: 100px 18px 56px; }
+      .notice-box   { padding: 24px 20px; }
+      .form-section { padding: 56px 18px 72px; }
+      .form-wrapper iframe { min-height: 1600px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Product Architect <span>Coaching</span></div>
+  </nav>
+
+  <!-- ── VIDEO / HERO ── -->
+  <section class="video-hero">
+    <div class="notice-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v5M6 9.5v.5" stroke="#f47676" stroke-width="2" stroke-linecap="round"/></svg>
+      Please Watch Before Submitting
+    </div>
+
+    <h1>Product Architect <span>Cancellation / Pause</span></h1>
+    <p class="lead">Before you fill in the form below, please take a moment to watch this short video from John. It will take less than 5 minutes.</p>
+
+    <div class="video-embed">
+      <iframe
+        src="https://www.youtube.com/embed/PcPjF0bHgUg"
+        title="A message from John — before you cancel or pause"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ── IMPORTANT NOTICE ── -->
+  <section class="notice-section">
+    <div class="notice-box">
+      <h3>⚠ Important — Please Read Before Proceeding</h3>
+      <ul>
+        <li>If you cancel or pause, you will <strong>not</strong> be able to rejoin for <strong>6 months</strong>.</li>
+        <li>When you do rejoin, pricing may have changed and the current rate is <strong>not guaranteed</strong>.</li>
+        <li>Please ensure you have genuinely considered all options before submitting this form.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── FORM ── -->
+  <section class="form-section">
+    <div class="form-intro">
+      <h2>Cancellation / Pause Request</h2>
+      <p>Fill in the form honestly — your feedback genuinely helps us improve the program for everyone.</p>
+    </div>
+
+    <div class="form-wrapper">
+      <!-- REPLACE the src below with your Google Form embed URL -->
+      <iframe
+        src="GOOGLE_FORM_EMBED_URL"
+        title="Product Architect Cancellation Form">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Product Architect Coaching &middot; &copy; 2025 John Yeo &middot; All rights reserved.
+  </footer>
+
+</body>
+</html>
