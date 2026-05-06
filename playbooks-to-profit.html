@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profitable Playbooks — Free Guide for Heart-Based Tutors & Teachers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pac-dark:     #0A0F1C;
+      --pac-navy:     #002D6A;
+      --pac-navy-mid: #0D2250;
+      --pac-teal:     #0ABFBC;
+      --white:        #FFFFFF;
+      --soft-grey:    #B8C4D4;
+      --mid-grey:     #6B7A96;
+      --font-head:    'Montserrat', sans-serif;
+      --font-body:    'Lato', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--pac-dark);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.2; }
+    a { color: var(--pac-teal); text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: 1060px; margin: 0 auto; }
+    section { padding: 80px 24px; }
+
+    /* ── NAV ── */
+    .nav {
+      background: rgba(10,15,28,0.97);
+      border-bottom: 1px solid rgba(11,191,188,0.15);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--white);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-logo span { color: var(--pac-teal); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 64px 24px 80px;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(11,191,188,0.13) 0%, transparent 65%),
+        linear-gradient(160deg, #0A0F1C 0%, #002D6A 55%, #0A0F1C 100%);
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pac-teal);
+      border: 1px solid rgba(11,191,188,0.4);
+      border-radius: 100px;
+      padding: 5px 16px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4.5vw, 54px);
+      font-weight: 900;
+      max-width: 820px;
+      margin: 0 auto 18px;
+      line-height: 1.15;
+    }
+
+    .hero h1 span { color: var(--pac-teal); }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 19px);
+      color: var(--soft-grey);
+      max-width: 660px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+
+    /* Hero layout: book + form side by side */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 56px;
+      align-items: start;
+      max-width: 960px;
+      margin: 48px auto 0;
+      text-align: left;
+    }
+
+    .hero-book img {
+      width: 100%;
+      filter: drop-shadow(0 32px 48px rgba(0,0,0,0.6));
+      border-radius: 4px;
+    }
+
+    /* ── OPT-IN FORM CARD ── */
+    .optin-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(11,191,188,0.25);
+      border-radius: 16px;
+      padding: 36px 32px;
+    }
+
+    .optin-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+
+    .optin-card .free-badge {
+      display: inline-block;
+      background: var(--pac-teal);
+      color: var(--pac-dark);
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+    }
+
+    .optin-card p {
+      font-size: 14px;
+      color: var(--soft-grey);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .form-group { margin-bottom: 14px; }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--soft-grey);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(11,191,188,0.25);
+      border-radius: 8px;
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input::placeholder { color: var(--mid-grey); }
+    .form-group input:focus { border-color: var(--pac-teal); }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--pac-teal);
+      color: var(--pac-dark);
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 8px;
+      padding: 16px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #08d4d1;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(10,191,188,0.35);
+    }
+
+    .form-disclaimer {
+      font-size: 12px;
+      color: var(--mid-grey);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ── CREDENTIALS ── */
+    .creds-section {
+      background: var(--pac-navy-mid);
+      padding: 48px 24px;
+    }
+
+    .creds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .cred-item h3 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900;
+      color: var(--pac-teal);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .cred-item p {
+      font-size: 15px;
+      color: var(--soft-grey);
+      font-weight: 700;
+    }
+
+    /* ── PROMISE ── */
+    .promise-section {
+      background: var(--pac-dark);
+      text-align: center;
+    }
+
+    .promise-section h2 {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 900;
+      max-width: 820px;
+      margin: 0 auto 20px;
+      line-height: 1.3;
+    }
+
+    .promise-section h2 span { color: var(--pac-teal); }
+
+    .promise-section p {
+      color: var(--soft-grey);
+      font-size: 17px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── CHAPTER PREVIEWS ── */
+    .chapters-section { background: var(--pac-navy); }
+
+    .section-label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pac-teal);
+      margin-bottom: 10px;
+    }
+
+    .section-heading {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      color: var(--soft-grey);
+      font-size: 17px;
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .chapter-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(11,191,188,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    }
+
+    .chapter-card img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .chapter-card-label {
+      padding: 14px 16px;
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--soft-grey);
+    }
+
+    /* ── DELIVERABLES ── */
+    .deliver-section { background: var(--pac-navy-mid); }
+
+    .deliver-box {
+      background: rgba(11,191,188,0.05);
+      border: 2px solid rgba(11,191,188,0.25);
+      border-radius: 20px;
+      padding: 52px 48px;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .deliver-free {
+      display: inline-block;
+      background: var(--pac-teal);
+      color: var(--pac-dark);
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .deliver-box h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900;
+      margin-bottom: 32px;
+    }
+
+    .deliver-list {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .deliver-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      color: var(--soft-grey);
+      font-size: 16px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .deliver-list li .check {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: rgba(11,191,188,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .deliver-value {
+      font-family: var(--font-head);
+      font-size: 15px;
+      color: var(--mid-grey);
+      text-decoration: line-through;
+      margin-bottom: 8px;
+    }
+
+    .deliver-price {
+      font-family: var(--font-head);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--pac-teal);
+      margin-bottom: 28px;
+    }
+
+    /* ── MEDIA ── */
+    .media-section { background: var(--pac-dark); }
+
+    .media-logos {
+      margin: 0 auto 56px;
+      max-width: 860px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      padding: 20px 28px;
+    }
+
+    .media-logos img {
+      width: 100%;
+      display: block;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .media-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .media-item img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ── WORKSHOP PHOTO ── */
+    .workshop-section {
+      padding: 0;
+      position: relative;
+    }
+
+    .workshop-section img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .workshop-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,15,28,0.88) 0%, rgba(10,15,28,0.2) 50%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 40px;
+    }
+
+    .workshop-caption {
+      font-family: var(--font-head);
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 800;
+      color: var(--white);
+      max-width: 600px;
+    }
+
+    .workshop-caption span { color: var(--pac-teal); }
+
+    /* ── TESTIMONIALS ── */
+    .testi-section { background: var(--pac-navy); }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .testi-img-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(11,191,188,0.15);
+    }
+
+    .testi-img-card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--pac-dark); }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .about-photo-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(11,191,188,0.2);
+    }
+
+    .about-photo-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    .about-eyebrow {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pac-teal);
+      margin-bottom: 12px;
+    }
+
+    .about-section h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      color: var(--soft-grey);
+      font-size: 16px;
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    .stat-box {
+      background: rgba(11,191,188,0.07);
+      border: 1px solid rgba(11,191,188,0.2);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--pac-teal);
+    }
+
+    .stat-box span {
+      font-size: 12px;
+      color: var(--soft-grey);
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-section {
+      background: linear-gradient(160deg, #002D6A 0%, #0A0F1C 100%);
+      text-align: center;
+      padding: 96px 24px;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(26px, 4vw, 46px);
+      font-weight: 900;
+      max-width: 720px;
+      margin: 0 auto 16px;
+    }
+
+    .cta-section h2 span { color: var(--pac-teal); }
+
+    .cta-section p {
+      color: var(--soft-grey);
+      font-size: 18px;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-form {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .cta-form .form-group input {
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060a12;
+      border-top: 1px solid rgba(11,191,188,0.1);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      color: var(--mid-grey);
+      line-height: 1.8;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-layout    { grid-template-columns: 1fr; max-width: 520px; }
+      .hero-book      { display: none; }
+      .creds-grid     { grid-template-columns: repeat(3, 1fr); }
+      .chapters-grid  { grid-template-columns: repeat(2, 1fr); }
+      .media-grid     { grid-template-columns: 1fr; }
+      .about-layout   { grid-template-columns: 1fr; }
+      .about-photo-wrap { max-width: 320px; margin: 0 auto; }
+      .testi-grid     { grid-template-columns: 1fr; }
+      .stat-row       { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      section         { padding: 60px 18px; }
+      .hero           { padding: 48px 18px 64px; }
+      .optin-card     { padding: 28px 20px; }
+      .deliver-box    { padding: 36px 22px; }
+      .chapters-grid  { grid-template-columns: repeat(2, 1fr); }
+      .creds-grid     { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .stat-row       { grid-template-columns: 1fr; }
+      .workshop-overlay { padding: 24px 20px; }
+      .media-logos    { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Product Architect <span>Coaching</span></div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-eyebrow">For Heart-Based Tutors, Centre Owners &amp; Teachers Only</div>
+    <h1>Transform Your Business with <span>High-Impact, Profitable Playbooks</span></h1>
+    <p class="hero-sub">Discover how to scale your business and increase your impact — all while working less and living more.</p>
+
+    <div class="hero-layout">
+      <!-- Book cover -->
+      <div class="hero-book">
+        <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/playbook-cover.png"
+             alt="How to Create Profitable Playbooks to Scale Your Business — John Yeo" />
+      </div>
+
+      <!-- Opt-in form -->
+      <div class="optin-card">
+        <div class="free-badge">100% Free — Lifetime Access</div>
+        <h3>Enter your details and we'll send you the entire guide for free:</h3>
+        <p style="margin-top:10px;">These are the best business lessons I've gathered over a lifetime, including everything I've learned after having impacted 45,000+ parents, built 70+ products and conducted 300+ workshops.</p>
+
+        <form method="post" action="#">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Your first name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+          <button type="submit" class="btn-submit">👉 Send Me the Complete Guide — Free!</button>
+          <p class="form-disclaimer">🔒 No spam. Unsubscribe any time. Your details are safe.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CREDENTIALS ── -->
+  <div class="creds-section">
+    <div class="container">
+      <div class="creds-grid">
+        <div class="cred-item">
+          <h3>70+</h3>
+          <p>Online &amp; Physical Products Built</p>
+        </div>
+        <div class="cred-item">
+          <h3>45K+</h3>
+          <p>Parents &amp; Children Served</p>
+        </div>
+        <div class="cred-item">
+          <h3>300+</h3>
+          <p>Workshops Conducted</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROMISE ── -->
+  <section class="promise-section">
+    <div class="container">
+      <h2>These Are The <span>Exact Strategies &amp; Techniques</span> That Help Heart-Based Tutors &amp; Teachers Get Their Next 10–20 Higher Qualified Clients</h2>
+      <p style="margin-top: 20px;">With an increase in revenue &amp; impact — using less time &amp; effort. Transform your passion &amp; expertise into playbooks that attract opportunities.</p>
+    </div>
+  </section>
+
+  <!-- ── CHAPTER PREVIEWS ── -->
+  <section class="chapters-section">
+    <div class="container">
+      <div class="section-label">Inside the Guide</div>
+      <h2 class="section-heading">90+ Pages Packed with Actionable Systems</h2>
+      <p class="section-sub">A step-by-step guide covering everything you need to build a heart-centred, scalable business.</p>
+
+      <div class="chapters-grid">
+        <div class="chapter-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/playbook-ch1.png" alt="Creating Your Transformational Playbook" />
+          <div class="chapter-card-label">Creating Your Transformational Playbook</div>
+        </div>
+        <div class="chapter-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/playbook-ch2.png" alt="Building Your Prospect List" />
+          <div class="chapter-card-label">Building Your Prospect List</div>
+        </div>
+        <div class="chapter-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/playbook-ch3.png" alt="Diversifying Your Income Streams" />
+          <div class="chapter-card-label">Diversifying Your Income Streams</div>
+        </div>
+        <div class="chapter-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/playbook-ch4.png" alt="Setting Up Your Payment Systems" />
+          <div class="chapter-card-label">Setting Up Your Payment Systems</div>
+        </div>
+        <div class="chapter-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/playbook-ch5.png" alt="Guide Chapter 5" />
+          <div class="chapter-card-label">Scaling Your Client Acquisition</div>
+        </div>
+        <div class="chapter-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/playbook-ch6.png" alt="Guide Chapter 6" />
+          <div class="chapter-card-label">Building Authentic Client Connections</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DELIVERABLES ── -->
+  <section class="deliver-section">
+    <div class="container">
+      <div class="deliver-box">
+        <div class="deliver-free">100% Free — Lifetime Access</div>
+        <h2>Here's Everything You Get When You Download Today</h2>
+
+        <ul class="deliver-list">
+          <li>
+            <div class="check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span><strong style="color:#fff;">6 Essential Steps PDF Guide</strong> (90+ Pages!) — a complete business playbook built for tutors and teachers</span>
+          </li>
+          <li>
+            <div class="check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span>Discover how to create authentic connections with ideal clients while staying true to your values and mission</span>
+          </li>
+          <li>
+            <div class="check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span>Learn proven systems to diversify your income streams without feeling overwhelmed or compromising your integrity</span>
+          </li>
+          <li>
+            <div class="check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span>Master the art of scaling your impact sustainably — grow your business while maintaining the personal touch your clients love</span>
+          </li>
+          <li>
+            <div class="check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span>Get step-by-step guidance to transform your expertise into multiple revenue streams that serve both your purpose and profit</span>
+          </li>
+        </ul>
+
+        <div class="deliver-value">Total Value: $197</div>
+        <div class="deliver-price">Yours Today: FREE</div>
+
+        <a href="#cta" style="display:inline-block; background:var(--pac-teal); color:var(--pac-dark); font-family:var(--font-head); font-weight:900; font-size:15px; letter-spacing:0.06em; text-transform:uppercase; padding:18px 44px; border-radius:8px; text-decoration:none; transition:all 0.2s;">
+          👉 Yes! I Want Free Access
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORKSHOP PHOTO ── -->
+  <div class="workshop-section">
+    <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/john-workshop.jpeg"
+         alt="John Yeo conducting a live workshop" />
+    <div class="workshop-overlay">
+      <div class="workshop-caption">Helping <span>100+ educators</span> build businesses they love — without burning out</div>
+    </div>
+  </div>
+
+  <!-- ── AS SEEN IN ── -->
+  <section class="media-section">
+    <div class="container">
+      <div class="section-label" style="text-align:center; margin-bottom:16px;">As Seen In</div>
+
+      <div class="media-logos">
+        <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/media-logos.jpeg"
+             alt="TV Tokyo, CCTV America, CCTV, Channel 8, The New Paper, Lianhe Wanbao, Shin Min, Asian Parent, AsiaOne, myPaper" />
+      </div>
+
+      <div class="media-grid">
+        <div class="media-item">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/media-cgtn.png" alt="CGTN America — Singapore Education feature" />
+        </div>
+        <div class="media-item">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/media-tv.jpeg" alt="John Yeo on Mediacorp TV" />
+        </div>
+        <div class="media-item">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/media-zaobao.jpeg" alt="Zaobao newspaper feature" />
+        </div>
+        <div class="media-item">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/media-newpaper.png" alt="The New Paper — Tutors feeling PSLE heat" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section class="testi-section">
+    <div class="container">
+      <div class="section-label">What People Say</div>
+      <h2 class="section-heading">Trusted by Educators Across Singapore</h2>
+
+      <div class="testi-grid">
+        <div class="testi-img-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/testi-melissa.png" alt="Testimonial — Melissa Loi, Spearhead Digital" />
+        </div>
+        <div class="testi-img-card">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/john-book-photo.jpeg" alt="John Yeo with client holding A*Star Kit playbook" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT JOHN ── -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-photo-wrap">
+          <img src="https://raw.githubusercontent.com/johnyeo-dev/johnyeo/main/images/john-workshop.jpeg"
+               alt="John Yeo — Product Architect" style="aspect-ratio:4/3; object-fit:cover;" />
+        </div>
+
+        <div class="about-content">
+          <div class="about-eyebrow">Who Is John Yeo?</div>
+          <h2>Hi there, I'm John.</h2>
+          <p>I'm the founder of Product Architect. As a Product Architect Business Coach, I help heart-centered tutors and teachers transform their services into scalable products while staying true to their values and family life — creating a sustainable business they love.</p>
+          <p>With over 7 years in social work supporting single-parent families and 10+ years as a tutor and trainer, I know what it means to do heart-centered work. I've been where you are — and I've found the path forward.</p>
+
+          <div class="stat-row">
+            <div class="stat-box">
+              <strong>45K+</strong>
+              <span>Parents &amp; children impacted</span>
+            </div>
+            <div class="stat-box">
+              <strong>70+</strong>
+              <span>Products built &amp; launched</span>
+            </div>
+            <div class="stat-box">
+              <strong>300+</strong>
+              <span>Workshops conducted</span>
+            </div>
+          </div>
+
+          <p>Featured on CCTV America, Mediacorp Channel 8, The New Paper, Zaobao, Shin Min Daily, Asian Parent, and AsiaOne — my work in education has been recognised across the region.</p>
+          <p style="color:var(--white); font-weight:700; margin-top:8px;">My superpower? Breaking down complex problems into simple, actionable systems you can start using today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <h2>👉 Yes! I Want <span>Free Access</span> to the Complete Guide</h2>
+      <p>Enter your details below and I'll send you the full guide instantly.</p>
+
+      <div class="cta-form optin-card" style="text-align:left;">
+        <form method="post" action="#">
+          <div class="form-group">
+            <label for="cta-first-name">First Name</label>
+            <input type="text" id="cta-first-name" name="first_name" placeholder="Your first name" required />
+          </div>
+          <div class="form-group">
+            <label for="cta-email">Email Address</label>
+            <input type="email" id="cta-email" name="email" placeholder="your@email.com" required />
+          </div>
+          <button type="submit" class="btn-submit">Send Me the Complete Guide — Free!</button>
+          <p class="form-disclaimer">🔒 No spam. Unsubscribe any time.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>&copy; John Yeo · Product Architect Coaching · All rights reserved.</p>
+    <p style="margin-top:10px; font-size:11px; max-width:640px; margin-left:auto; margin-right:auto; line-height:1.6;">
+      This website is not a part of Facebook or Facebook Inc. Additionally, this site is not endorsed by Facebook in any way. Facebook is a trademark of Facebook Inc.
+    </p>
+  </footer>
+
+</body>
+</html>
