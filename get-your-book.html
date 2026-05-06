@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Book — John Yeo | Product Architect Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark:       #0A0F1C;
+    --navy:       #002D6A;
+    --turquoise:  #0ABFBC;
+    --white:      #FFFFFF;
+    --soft-grey:  #B8C4D4;
+    --mid-grey:   #6B7A96;
+    --navy-light: #0D2250;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.2;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── UTILITY ─── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .container--narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+  .tag {
+    display: inline-block;
+    background: rgba(10,191,188,0.15);
+    border: 1px solid var(--turquoise);
+    color: var(--turquoise);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--turquoise);
+    border-radius: 2px;
+    margin: 20px auto 32px;
+  }
+  .divider--left { margin-left: 0; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,15,28,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(10,191,188,0.15);
+  }
+  .nav-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--mid-grey);
+  }
+  .nav-brand span { color: var(--turquoise); }
+  .nav-cta {
+    background: var(--turquoise);
+    color: var(--dark);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border-radius: 6px;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 140px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(10,191,188,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--turquoise);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--soft-grey);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 520px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--turquoise);
+    color: var(--dark);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 16px 32px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(10,191,188,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(10,191,188,0.4);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 16px 28px;
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--turquoise);
+    background: rgba(10,191,188,0.08);
+  }
+
+  .hero-visual { position: relative; }
+  .hero-img-wrap {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .hero-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(10,15,28,0.4));
+  }
+  .hero-img-wrap img { width: 100%; }
+  .hero-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--navy);
+    border: 2px solid var(--turquoise);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 2;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .hero-badge .big { font-size: 28px; font-weight: 900; color: var(--turquoise); display: block; line-height: 1; }
+
+  /* ─── SOCIAL PROOF BAR ─── */
+  .proof-bar {
+    background: var(--navy);
+    border-top: 1px solid rgba(10,191,188,0.15);
+    border-bottom: 1px solid rgba(10,191,188,0.15);
+    padding: 28px 24px;
+    margin-top: 60px;
+  }
+  .proof-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 24px;
+    text-align: center;
+  }
+  .proof-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .proof-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--turquoise);
+    line-height: 1;
+  }
+  .proof-label {
+    font-size: 13px;
+    color: var(--soft-grey);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 90px 24px; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-header h2 {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  .section-header p {
+    font-size: 17px;
+    color: var(--soft-grey);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ─── STORY SECTION ─── */
+  .story { background: var(--dark); }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 70px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .story-img {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .story-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(10,191,188,0.3);
+    border-radius: 16px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .story-img img { width: 100%; }
+  .story-content h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  .story-content p {
+    font-size: 16px;
+    color: var(--soft-grey);
+    margin-bottom: 20px;
+  }
+  .story-content p strong { color: var(--white); }
+  .story-quote {
+    border-left: 3px solid var(--turquoise);
+    padding: 20px 24px;
+    margin: 32px 0;
+    background: rgba(10,191,188,0.05);
+    border-radius: 0 8px 8px 0;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  /* ─── BOOK 1 SECTION ─── */
+  .book-section {
+    background: linear-gradient(180deg, var(--dark) 0%, var(--navy-light) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .book-section::before {
+    content: '';
+    position: absolute;
+    bottom: -300px; left: -300px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(10,191,188,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .book-header {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto 70px;
+  }
+  .book-header-content h2 {
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+  .book-header-content h2 span { color: var(--turquoise); }
+  .book-header-content p {
+    font-size: 16px;
+    color: var(--soft-grey);
+    margin-bottom: 14px;
+  }
+  .book-page-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10,191,188,0.1);
+    border: 1px solid rgba(10,191,188,0.3);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--turquoise);
+    margin-top: 8px;
+  }
+  .book-cover-img {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    transform: rotate(2deg);
+    transition: transform 0.3s;
+  }
+  .book-cover-img:hover { transform: rotate(0deg) scale(1.02); }
+
+  /* ─── CHAPTERS GRID ─── */
+  .chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .chapter-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .chapter-card:hover {
+    border-color: rgba(10,191,188,0.4);
+    background: rgba(10,191,188,0.05);
+    transform: translateY(-2px);
+  }
+  .chapter-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--navy);
+  }
+  .chapter-icon img { width: 100%; height: 100%; object-fit: cover; }
+  .chapter-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: 6px;
+  }
+  .chapter-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .chapter-page {
+    font-size: 12px;
+    color: var(--mid-grey);
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--dark); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 28px;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(10,191,188,0.3);
+  }
+  .testimonial-card::before {
+    content: '\201C';
+    position: absolute;
+    top: 16px; right: 24px;
+    font-size: 60px;
+    line-height: 1;
+    color: rgba(10,191,188,0.2);
+    font-family: Georgia, serif;
+  }
+  .testimonial-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 16px;
+  }
+  .star { color: var(--turquoise); font-size: 14px; }
+  .testimonial-text {
+    font-size: 15px;
+    color: var(--soft-grey);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 20px;
+  }
+  .author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--turquoise);
+    flex-shrink: 0;
+  }
+  .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .author-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .author-role {
+    font-size: 12px;
+    color: var(--mid-grey);
+  }
+
+  /* ─── BUNDLE SECTION ─── */
+  .bundle { background: var(--navy); position: relative; overflow: hidden; }
+  .bundle::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(10,191,188,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .bundle-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .bundle-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .bundle-header h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; margin-bottom: 16px; }
+  .bundle-header p { font-size: 17px; color: var(--soft-grey); max-width: 600px; margin: 0 auto; }
+
+  .bundle-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .bundle-visual { position: sticky; top: 100px; }
+  .bundle-books-stack { position: relative; }
+  .book-card {
+    background: var(--dark);
+    border: 1px solid rgba(10,191,188,0.2);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+  .book-card img { width: 100%; }
+  .book-card-label {
+    padding: 16px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--turquoise);
+    border-top: 1px solid rgba(10,191,188,0.15);
+  }
+
+  .bundle-content h3 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .bundle-content p {
+    font-size: 16px;
+    color: var(--soft-grey);
+    margin-bottom: 16px;
+  }
+  .bundle-bullets { list-style: none; margin: 28px 0; }
+  .bundle-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 15px;
+    color: var(--soft-grey);
+  }
+  .bundle-bullets li:last-child { border-bottom: none; }
+  .bullet-check {
+    width: 22px;
+    height: 22px;
+    background: rgba(10,191,188,0.15);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--turquoise);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  /* ─── BOOK 2 CHAPTERS ─── */
+  .book2-chapters {
+    max-width: 1100px;
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .b2-chapter {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 16px 20px;
+    transition: border-color 0.2s;
+  }
+  .b2-chapter:hover { border-color: rgba(10,191,188,0.3); }
+  .b2-chapter-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--turquoise);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .b2-chapter-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .b2-chapter-page { font-size: 12px; color: var(--mid-grey); }
+
+  /* ─── HIGHLIGHTED QUOTE ─── */
+  .highlight-quote {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+    padding: 70px 24px;
+    text-align: center;
+  }
+  .highlight-quote blockquote {
+    max-width: 700px;
+    margin: 0 auto 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(20px, 2.5vw, 30px);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--white);
+  }
+  .highlight-quote blockquote span { color: var(--turquoise); }
+  .highlight-quote cite {
+    font-style: normal;
+    font-size: 14px;
+    color: var(--mid-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .highlight-quote cite::before,
+  .highlight-quote cite::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--mid-grey);
+    display: block;
+  }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--dark) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(10,191,188,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 900;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-section p {
+    font-size: 18px;
+    color: var(--soft-grey);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    position: relative;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .btn-amazon {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 16px 28px;
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-amazon:hover {
+    border-color: #FF9900;
+    background: rgba(255,153,0,0.08);
+    color: #FF9900;
+  }
+  .cta-note {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--mid-grey);
+    position: relative;
+  }
+
+  /* ─── CALENDLY SECTION ─── */
+  .calendly-section {
+    background: var(--dark);
+    padding: 90px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(10,191,188,0.15);
+  }
+  .calendly-section h2 {
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  .calendly-section p {
+    font-size: 17px;
+    color: var(--soft-grey);
+    max-width: 520px;
+    margin: 0 auto 48px;
+  }
+  .calendly-embed-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(10,191,188,0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .calendly-inline-widget {
+    min-width: 320px;
+    height: 700px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #060A12;
+    padding: 40px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--mid-grey);
+  }
+  .footer-brand span { color: var(--turquoise); }
+  .footer-copy { font-size: 13px; color: var(--mid-grey); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { order: -1; max-width: 400px; margin: 0 auto; }
+    .hero-badge { bottom: -10px; left: 10px; }
+    .story-grid { grid-template-columns: 1fr; }
+    .story-img { max-width: 380px; }
+    .book-header { grid-template-columns: 1fr; }
+    .book-cover-img { max-width: 280px; }
+    .bundle-grid { grid-template-columns: 1fr; }
+    .bundle-visual { position: static; max-width: 320px; }
+  }
+  @media (max-width: 600px) {
+    .proof-bar-inner { flex-direction: column; gap: 20px; }
+    .hero-btns { flex-direction: column; align-items: flex-start; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    nav { padding: 14px 16px; }
+    .nav-cta { padding: 8px 16px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Product <span>Architect</span> Coaching</div>
+  <a href="https://learningoutofthebox.thrivecart.com/authentic-book/" class="nav-cta" target="_blank" rel="noopener">Get The Book</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <p class="hero-eyebrow">For Heart-Centered Tutors, Coaches &amp; Helping Professionals</p>
+      <h1>What If Your Story Is<br><em>Your Strategy?</em></h1>
+      <p class="hero-sub">My heart-to-heart guide to building an authentic business that fits your life — without the highlight reels, fake personas, or endless hustle.</p>
+      <div class="hero-btns">
+        <a href="https://learningoutofthebox.thrivecart.com/authentic-book/" class="btn-primary" target="_blank" rel="noopener">
+          🇸🇬 Get Your Copy (Singapore)
+        </a>
+        <a href="https://www.amazon.com/dp/B0FM4BMMMF" class="btn-secondary" target="_blank" rel="noopener">
+          Buy on Amazon
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img
+          src="images/hero.jpeg"
+          alt="John Yeo — In the Business of Being Authentic"
+          loading="eager"
+        >
+      </div>
+      <div class="hero-badge">
+        <span class="big">100</span>
+        First copies sold out<br>within 5 days
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <div class="proof-item">
+      <span class="proof-num">45,000+</span>
+      <span class="proof-label">Families Served</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">80+</span>
+      <span class="proof-label">Pages of Solid Content</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">7 yrs</span>
+      <span class="proof-label">As a Social Worker</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">6-fig</span>
+      <span class="proof-label">Education Business Built</span>
+    </div>
+  </div>
+</div>
+
+<!-- STORY SECTION -->
+<section class="story">
+  <div class="story-grid">
+    <div class="story-img">
+      <img
+        src="images/author.jpg"
+        alt="John Yeo"
+        loading="lazy"
+      >
+    </div>
+    <div class="story-content">
+      <span class="tag">The Story Behind The Book</span>
+      <h2>Here's what I've really learned about building an authentic business…</h2>
+      <p>After <strong>7 years as a social worker</strong> helping single-parent families, I discovered that the same authenticity that transformed lives in my practice could revolutionise how we approach social media and business.</p>
+      <p>Through raw honesty about <strong>mental health struggles, entrepreneurial failures, and the messy reality</strong> of building something meaningful, I've learned that your imperfections might be your greatest business asset.</p>
+      <div class="story-quote">
+        "What if the key to building a profitable online presence isn't about perfect content or endless strategies — but about simply being yourself?"
+      </div>
+      <p>Forget the highlight reels and carefully curated feeds. This is your permission to show up as you are, serve from your heart, and build a business that fits your life.</p>
+      <p style="font-style:italic; color: var(--turquoise);">Sometimes, the most powerful marketing strategy is just telling the truth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK 1 -->
+<section class="book-section" id="book1">
+  <div class="book-header">
+    <div class="book-header-content">
+      <span class="tag">Book 1</span>
+      <h2>In the Business of<br><span>Being Authentic</span></h2>
+      <p>A practical, heart-forward guide to building your business around who you actually are — not who you think you should be.</p>
+      <p>Here's what to expect when you get your book of <strong>80+ pages</strong> of solid content.</p>
+      <div class="book-page-count">📖 80+ Pages · 8 Chapters</div>
+    </div>
+    <div class="book-cover-img">
+      <img
+        src="images/book1-cover.png"
+        alt="In the Business of Being Authentic — Book Cover"
+        loading="lazy"
+      >
+    </div>
+  </div>
+
+  <div class="chapters-grid">
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch1-icon.png" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">Personal Branding</div>
+        <div class="chapter-title">Chapter 1: Why Being You is Your Only Real Advantage</div>
+        <div class="chapter-page">from page 6</div>
+      </div>
+    </div>
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch2-icon.png" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">Self Awareness</div>
+        <div class="chapter-title">Chapter 2: The Inside Work — Getting to Know Yourself First</div>
+        <div class="chapter-page">from page 12</div>
+      </div>
+    </div>
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch3-icon.png" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">Content Strategy</div>
+        <div class="chapter-title">Chapter 3: Giving It All Away — Why Sharing Everything Actually Works</div>
+        <div class="chapter-page">from page 18</div>
+      </div>
+    </div>
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch4-icon.png" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">Social Media Content</div>
+        <div class="chapter-title">Chapter 4: Content That Comes from the Heart</div>
+        <div class="chapter-page">from page 23</div>
+      </div>
+    </div>
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch5-icon.png" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">1-on-1 Sales Calls</div>
+        <div class="chapter-title">Chapter 5: Selling Like You're Talking to a Friend</div>
+        <div class="chapter-page">from page 30</div>
+      </div>
+    </div>
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch6-icon.jpg" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">Client Selection</div>
+        <div class="chapter-title">Chapter 6: The Beautiful Art of Saying No</div>
+        <div class="chapter-page">from page 37</div>
+      </div>
+    </div>
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch7-icon.jpeg" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">Webinar / Group Sales</div>
+        <div class="chapter-title">Chapter 7: Closing Deals Without Losing Your Soul</div>
+        <div class="chapter-page">from page 44</div>
+      </div>
+    </div>
+    <div class="chapter-card">
+      <div class="chapter-icon">
+        <img src="images/ch8-icon.png" alt="">
+      </div>
+      <div>
+        <div class="chapter-label">Business Model</div>
+        <div class="chapter-title">Chapter 8: Making Money While Making a Difference</div>
+        <div class="chapter-page">from page 51</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <span class="tag">What Readers Say</span>
+    <h2>Here's what others said about our book</h2>
+    <div class="divider"></div>
+    <p>Real words from coaches, founders and business owners who've read it.</p>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"He has documented his genuine, authentic marketing methods... I got 5 copies immediately, firm believer in supporting good work."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <img src="images/testimonial-melvin.jpg" alt="Melvin Soh" loading="lazy">
+        </div>
+        <div>
+          <div class="author-name">Melvin Soh</div>
+          <div class="author-role">Founder of X-factor · 7 &amp; 8-figure Business Coach</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"This book shows that authenticity isn't just morally superior but strategically advantageous. John demo how being genuinely yourself attracts the right clients."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <img src="images/testimonial-zee.jpg" alt="Zee & Jonathan" loading="lazy">
+        </div>
+        <div>
+          <div class="author-name">Zee &amp; Jonathan</div>
+          <div class="author-role">Venture Capitalist · Expansion Strategists to Global Markets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"This book is like having a good friend explain how to run a business while being yourself authentically. He shares his personal stories — the good and messy parts — which makes it feel so real and honest."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <img src="images/testimonial-shuling.jpg" alt="Shu Ling" loading="lazy">
+        </div>
+        <div>
+          <div class="author-name">Shu Ling</div>
+          <div class="author-role">English Language Specialist</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"Each chapter encouraged me to reflect, evaluate, and refine how I can remain true to myself while attracting the right customers."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <img src="images/testimonial-siewfong.jpg" alt="Siew Fong" loading="lazy">
+        </div>
+        <div>
+          <div class="author-name">Siew Fong</div>
+          <div class="author-role">Small Business Owner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"Am impressed how much it covered."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <img src="images/testimonial-lew.jpg" alt="Lew" loading="lazy">
+        </div>
+        <div>
+          <div class="author-name">Lew</div>
+          <div class="author-role">Digital Marketing Specialist</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"Chapter 5 alone is worth the price if you ever need to get on a call and close with clients."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <img src="images/testimonial-agnes.jpg" alt="Agnes" loading="lazy">
+        </div>
+        <div>
+          <div class="author-name">Agnes</div>
+          <div class="author-role">Boston, United States</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTED QUOTE -->
+<div class="highlight-quote">
+  <blockquote>"Chapter 5 alone is worth the price — if you ever need to get on a call and <span>close with clients.</span>"</blockquote>
+  <cite>Agnes · Boston, United States</cite>
+</div>
+
+<!-- BUNDLE / BOOK 2 -->
+<section class="bundle" id="bundle">
+  <div class="bundle-inner">
+    <div class="bundle-header">
+      <span class="tag">Book Bundle Deal</span>
+      <h2>2X Your Business Growth</h2>
+      <div class="divider"></div>
+      <p>Introducing our 2nd book — <strong>100 True Fans</strong>. Get both books and supercharge your authentic business journey.</p>
+    </div>
+
+    <div class="bundle-grid">
+      <div class="bundle-visual">
+        <div class="book-card">
+          <img
+            src="images/book2-cover.jpg"
+            alt="100 True Fans Book Cover"
+            loading="lazy"
+          >
+          <div class="book-card-label">100 True Fans · Book 2</div>
+        </div>
+      </div>
+
+      <div class="bundle-content">
+        <h3>Introducing Our 2nd Book — <span style="color:var(--turquoise)">100 True Fans</span></h3>
+        <p>I personally enjoy growing and nurturing a community because it brings me <strong style="color:var(--white)">endless leads</strong>. Plus, with trust built over time, when they enquire about your services, it's already 60–80% likely they want in.</p>
+        <p>With rising ad costs, I also encourage my business friends to <strong style="color:var(--white)">build communities around their personal brand.</strong></p>
+
+        <p style="margin-top:24px; color: var(--white); font-family:'Montserrat',sans-serif; font-weight:700; font-size:15px;">Inside you'll learn:</p>
+        <ul class="bundle-bullets">
+          <li>
+            <span class="bullet-check">✓</span>
+            The step-by-step process to grow <strong style="color:var(--white)">50–75 true fans</strong> who refer you constantly
+          </li>
+          <li>
+            <span class="bullet-check">✓</span>
+            The exact framework to build a <strong style="color:var(--white)">$15K+/month business</strong> from a small, tight community
+          </li>
+          <li>
+            <span class="bullet-check">✓</span>
+            The proven model I used to serve <strong style="color:var(--white)">45,000+ families</strong> and build my high 6-fig education business
+          </li>
+        </ul>
+
+        <a href="https://learningoutofthebox.thrivecart.com/authentic-book/" class="btn-primary" target="_blank" rel="noopener" style="margin-top:12px">
+          🎁 Get the Bundle Deal of 2
+        </a>
+      </div>
+    </div>
+
+    <!-- Book 2 Chapters -->
+    <div class="book2-chapters">
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 1</div>
+        <div class="b2-chapter-title">The Numbers That Set You Free</div>
+        <div class="b2-chapter-page">from page 7</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 2</div>
+        <div class="b2-chapter-title">Why Introverts Are Actually Built for This</div>
+        <div class="b2-chapter-page">from page 11</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 3</div>
+        <div class="b2-chapter-title">The Introvert's Community Blueprint</div>
+        <div class="b2-chapter-page">from page 15</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 4</div>
+        <div class="b2-chapter-title">Creating Events That Nurture (Not Exhaust)</div>
+        <div class="b2-chapter-page">from page 18</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 5</div>
+        <div class="b2-chapter-title">Building Your Online Tribe</div>
+        <div class="b2-chapter-page">from page 23</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 6</div>
+        <div class="b2-chapter-title">The Bring-a-Friend Strategy</div>
+        <div class="b2-chapter-page">from page 26</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 7</div>
+        <div class="b2-chapter-title">Content from the Heart — What to Share &amp; How</div>
+        <div class="b2-chapter-page">from page 29</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 8</div>
+        <div class="b2-chapter-title">The Generosity Principle — Give It All Away</div>
+        <div class="b2-chapter-page">from page 33</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 9</div>
+        <div class="b2-chapter-title">Selling Like You're Talking to a Friend</div>
+        <div class="b2-chapter-page">from page 36</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 10</div>
+        <div class="b2-chapter-title">The Sacred No — Choosing Your People</div>
+        <div class="b2-chapter-page">from page 39</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 11</div>
+        <div class="b2-chapter-title">Systems That Scale Without Burning You Out</div>
+        <div class="b2-chapter-page">from page 42</div>
+      </div>
+      <div class="b2-chapter">
+        <div class="b2-chapter-num">Chapter 12</div>
+        <div class="b2-chapter-title">Go Build Something Beautiful</div>
+        <div class="b2-chapter-page">from page 45</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container--narrow">
+    <span class="tag">Ready to Start?</span>
+    <h2>Get Your Book Today</h2>
+    <p>Choose your preferred way to order — Singapore delivery or Amazon Kindle / physical.</p>
+    <div class="cta-buttons">
+      <a href="https://learningoutofthebox.thrivecart.com/authentic-book/" class="btn-primary" target="_blank" rel="noopener" style="font-size:15px; padding:18px 36px">
+        🇸🇬 Order Now (Singapore)
+      </a>
+      <a href="https://www.amazon.com/dp/B0FM4BMMMF" class="btn-amazon" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.506.13.106.174.032.344-.208.507a17.6 17.6 0 01-1.15.83c-1.352.912-2.823 1.547-4.413 1.906-1.59.36-3.214.54-4.872.54-3.39 0-6.56-.8-9.51-2.4-.23-.12-.314-.3-.226-.504zm14.276-7.972l-.26-.29c-1.17-.135-2.19-.39-3.06-.76-.874-.37-1.313-.76-1.313-1.17 0-.31.12-.6.356-.88.237-.277.553-.416.95-.416.328 0 .634.098.92.294l.27.2c.97.78 1.944 1.17 2.92 1.17.63 0 1.128-.1 1.49-.3.36-.2.544-.47.544-.82 0-.27-.107-.49-.32-.67-.21-.18-.53-.34-.95-.48-.42-.14-.96-.29-1.62-.44-.98-.24-1.77-.5-2.36-.78-.59-.28-1.05-.63-1.38-1.05-.33-.42-.5-.93-.5-1.52 0-.84.34-1.54 1.02-2.1.68-.56 1.56-.84 2.63-.84.81 0 1.57.17 2.28.51.71.34 1.27.8 1.67 1.38l.1.16c.17.3.1.56-.22.77l-.66.37c-.31.17-.56.1-.76-.2-.24-.37-.57-.67-.98-.9-.42-.23-.87-.35-1.35-.35-.5 0-.9.09-1.2.28-.3.19-.45.45-.45.79 0 .24.095.44.285.61.19.17.47.32.84.45.37.13.9.28 1.6.44.96.23 1.74.49 2.33.77.59.28 1.05.63 1.38 1.05.33.42.5.93.5 1.53 0 .93-.37 1.67-1.1 2.22-.73.55-1.71.82-2.93.82z"/></svg>
+        Buy on Amazon
+      </a>
+    </div>
+    <p class="cta-note">Physical books &amp; e-copies available for Singapore 🇸🇬 · Amazon: physical &amp; Kindle (Book 1 only)</p>
+  </div>
+</section>
+
+<!-- CALENDLY SECTION -->
+<section class="calendly-section">
+  <span class="tag">Book a Call</span>
+  <h2>Want to Talk Before You Buy?</h2>
+  <p>Schedule a free 15-minute chat with John. Ask anything about the books, coaching, or your business journey.</p>
+  <div class="calendly-embed-wrap">
+    <!-- Replace YOUR_CALENDLY_URL with your actual Calendly link e.g. https://calendly.com/johnyeo/15min -->
+    <div class="calendly-inline-widget" data-url="YOUR_CALENDLY_URL?background_color=0A0F1C&text_color=ffffff&primary_color=0ABFBC"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Product <span>Architect</span> Coaching</div>
+    <p class="footer-copy">© 2025 Product Architect · All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
