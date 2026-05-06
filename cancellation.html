@@ -151,19 +151,20 @@
     }
 
     .notice-box ul li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
       color: var(--soft-grey);
       font-size: 16px;
-      margin-bottom: 12px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+      padding-left: 28px;
+      position: relative;
     }
 
     .notice-box ul li::before {
       content: "⚠";
-      flex-shrink: 0;
+      position: absolute;
+      left: 0;
+      top: 1px;
       font-size: 14px;
-      margin-top: 3px;
     }
 
     /* ── FORM SECTION ── */
