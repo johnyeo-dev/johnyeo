@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Discovery Call — Product Architect Coaching</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pac-dark:     #0A0F1C;
+      --pac-navy:     #002D6A;
+      --pac-navy-mid: #0D2250;
+      --pac-teal:     #0ABFBC;
+      --white:        #FFFFFF;
+      --soft-grey:    #B8C4D4;
+      --mid-grey:     #6B7A96;
+      --font-head:    'Montserrat', sans-serif;
+      --font-body:    'Lato', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--pac-dark);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-head);
+      line-height: 1.2;
+    }
+
+    a { color: var(--pac-teal); text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ============================================================
+       FIXED NAV
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10, 15, 28, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(11, 191, 188, 0.15);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--white);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-logo span { color: var(--pac-teal); }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-teal {
+      background: var(--pac-teal);
+      color: var(--pac-dark);
+    }
+
+    .btn-teal:hover {
+      background: #08d4d1;
+      color: var(--pac-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(10, 191, 188, 0.35);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--pac-teal);
+      color: var(--pac-teal);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--pac-teal);
+      color: var(--pac-dark);
+    }
+
+    .btn-lg {
+      font-size: 16px;
+      padding: 18px 44px;
+      border-radius: 6px;
+    }
+
+    /* ============================================================
+       SECTIONS
+    ============================================================ */
+    section { padding: 96px 24px; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-dark  { background-color: var(--pac-dark); }
+    .section-navy  { background-color: var(--pac-navy); }
+    .section-navy-mid { background-color: var(--pac-navy-mid); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      padding-top: 140px;
+      padding-bottom: 100px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(11,191,188,0.12) 0%, transparent 70%),
+        linear-gradient(160deg, #0A0F1C 0%, #002D6A 60%, #0A0F1C 100%);
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pac-teal);
+      border: 1px solid rgba(11,191,188,0.4);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 900;
+      color: var(--white);
+      max-width: 880px;
+      margin: 0 auto 28px;
+      line-height: 1.15;
+    }
+
+    .hero h1 span { color: var(--pac-teal); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--soft-grey);
+      max-width: 720px;
+      margin: 0 auto 44px;
+      line-height: 1.75;
+    }
+
+    .hero-secondary {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--mid-grey);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       INTRO
+    ============================================================ */
+    .intro-heading {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 900;
+      margin-bottom: 28px;
+    }
+
+    .intro-body p {
+      color: var(--soft-grey);
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    .pain-list {
+      list-style: none;
+      margin: 24px 0 28px;
+    }
+
+    .pain-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--soft-grey);
+      margin-bottom: 14px;
+      font-size: 17px;
+    }
+
+    .pain-list li svg { flex-shrink: 0; margin-top: 3px; }
+
+    .intro-close {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 18px;
+      margin-top: 24px;
+    }
+
+    /* ============================================================
+       SOLUTION / SPRINTS
+    ============================================================ */
+    .section-label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pac-teal);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .section-subhead {
+      color: var(--soft-grey);
+      font-size: 18px;
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    .sprint-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 40px;
+    }
+
+    .sprint-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(11,191,188,0.2);
+      border-radius: 12px;
+      padding: 32px 28px;
+      position: relative;
+    }
+
+    .sprint-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--pac-teal);
+      color: var(--pac-dark);
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+
+    .sprint-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--white);
+    }
+
+    .sprint-card p {
+      color: var(--soft-grey);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: rgba(0, 45, 106, 0.3);
+      border: 1px solid rgba(11,191,188,0.15);
+      border-radius: 10px;
+      padding: 28px 24px;
+    }
+
+    .testimonial-result {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--pac-teal);
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--white);
+    }
+
+    .testimonial-role {
+      font-size: 13px;
+      color: var(--mid-grey);
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       GUARANTEE
+    ============================================================ */
+    .guarantee-box {
+      border: 2px solid var(--pac-teal);
+      border-radius: 16px;
+      padding: 52px 48px;
+      text-align: center;
+      background: rgba(11,191,188,0.04);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .guarantee-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+    }
+
+    .guarantee-box h2 {
+      font-size: clamp(24px, 3vw, 34px);
+      margin-bottom: 20px;
+    }
+
+    .guarantee-box p {
+      color: var(--soft-grey);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       IS THIS FOR YOU
+    ============================================================ */
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .fit-card {
+      border-radius: 12px;
+      padding: 36px 32px;
+    }
+
+    .fit-card.yes {
+      background: rgba(11,191,188,0.06);
+      border: 1px solid rgba(11,191,188,0.25);
+    }
+
+    .fit-card.no {
+      background: rgba(220,50,50,0.05);
+      border: 1px solid rgba(220,50,50,0.2);
+    }
+
+    .fit-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .fit-card.yes h3 { color: var(--pac-teal); }
+    .fit-card.no h3  { color: #f47676; }
+
+    .fit-list {
+      list-style: none;
+    }
+
+    .fit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--soft-grey);
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+
+    .fit-list li svg { flex-shrink: 0; margin-top: 3px; }
+
+    /* ============================================================
+       FRAMEWORK
+    ============================================================ */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .pillar-col {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(11,191,188,0.15);
+      border-top: 3px solid var(--pac-teal);
+      border-radius: 0 0 10px 10px;
+      padding: 28px 24px;
+    }
+
+    .pillar-col h3 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--pac-teal);
+      margin-bottom: 24px;
+    }
+
+    .pillar-item {
+      margin-bottom: 24px;
+    }
+
+    .pillar-item-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(11,191,188,0.15);
+      color: var(--pac-teal);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .pillar-item h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .pillar-item p {
+      font-size: 14px;
+      color: var(--soft-grey);
+      line-height: 1.65;
+    }
+
+    .dfy-box {
+      margin-top: 48px;
+      background: rgba(11,191,188,0.06);
+      border: 1px solid rgba(11,191,188,0.3);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+
+    .dfy-box h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--pac-teal);
+      margin-bottom: 20px;
+    }
+
+    .dfy-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 32px;
+    }
+
+    .dfy-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--soft-grey);
+      font-size: 15px;
+    }
+
+    /* ============================================================
+       PRICING
+    ============================================================ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 48px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      border-radius: 16px;
+      padding: 40px 36px;
+      background: rgba(0,45,106,0.25);
+      border: 1px solid rgba(11,191,188,0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card.recommended {
+      background: rgba(11,191,188,0.07);
+      border: 2px solid var(--pac-teal);
+      position: relative;
+    }
+
+    .recommended-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--pac-teal);
+      color: var(--pac-dark);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .pricing-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .pricing-price {
+      font-family: var(--font-head);
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--pac-teal);
+      line-height: 1.1;
+    }
+
+    .pricing-price span {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--mid-grey);
+    }
+
+    .pricing-total {
+      font-size: 14px;
+      color: var(--mid-grey);
+      margin: 6px 0 24px;
+    }
+
+    .pricing-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 0 0 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+      flex: 1;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--soft-grey);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .pricing-features li svg { flex-shrink: 0; margin-top: 2px; }
+
+    .plus-label {
+      font-family: var(--font-head);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pac-teal);
+      margin-bottom: 14px;
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-avatar {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--pac-navy), var(--pac-navy-mid));
+      border-radius: 16px;
+      border: 2px solid rgba(11,191,188,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .avatar-placeholder {
+      text-align: center;
+    }
+
+    .avatar-placeholder svg { opacity: 0.3; }
+
+    .avatar-placeholder p {
+      color: var(--mid-grey);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .about-content h2 { margin-bottom: 8px; }
+    .about-subhead {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--pac-teal);
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      color: var(--soft-grey);
+      margin-bottom: 18px;
+    }
+
+    .about-list {
+      list-style: none;
+      margin: 18px 0;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--soft-grey);
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .about-list li svg { flex-shrink: 0; margin-top: 3px; }
+
+    .about-personality h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+      margin-top: 28px;
+    }
+
+    /* ============================================================
+       CALENDLY
+    ============================================================ */
+    .calendly-section {
+      text-align: center;
+    }
+
+    .calendly-section h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      margin-bottom: 16px;
+    }
+
+    .calendly-section .lead {
+      color: var(--soft-grey);
+      font-size: 18px;
+      max-width: 620px;
+      margin: 0 auto 12px;
+    }
+
+    .calendly-note {
+      font-size: 15px;
+      color: var(--pac-teal);
+      font-style: italic;
+      margin-bottom: 40px;
+    }
+
+    .calendly-wrapper {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(11,191,188,0.2);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #060a12;
+      border-top: 1px solid rgba(11,191,188,0.1);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 14px;
+      color: var(--mid-grey);
+    }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .text-teal  { color: var(--pac-teal); }
+    .text-white { color: var(--white); }
+    .text-grey  { color: var(--soft-grey); }
+    .fw-700 { font-weight: 700; }
+    .mt-32  { margin-top: 32px; }
+    .center { text-align: center; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .sprint-grid        { grid-template-columns: 1fr; }
+      .testimonial-grid   { grid-template-columns: 1fr 1fr; }
+      .pillar-grid        { grid-template-columns: 1fr; }
+      .fit-grid           { grid-template-columns: 1fr; }
+      .pricing-grid       { grid-template-columns: 1fr; max-width: 480px; }
+      .about-grid         { grid-template-columns: 1fr; }
+      .about-avatar       { max-width: 300px; margin: 0 auto; }
+      .dfy-list           { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 72px 18px; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .guarantee-box    { padding: 36px 22px; }
+      .nav-logo         { font-size: 13px; }
+      .btn              { padding: 10px 18px; }
+      .btn-lg           { padding: 16px 28px; font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       FIXED NAV
+  ============================================================ -->
+  <nav class="nav">
+    <div class="nav-logo">Product Architect <span>Coaching</span></div>
+    <a href="#calendly" class="btn btn-teal">Book a Call</a>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 1: HERO
+  ============================================================ -->
+  <section class="hero section-dark">
+    <div class="container">
+      <div class="hero-eyebrow">For Heart-Centered Tutors, Coaches, Trainers &amp; Helping Professionals</div>
+      <h1>Grow to <span>$10–30K Monthly</span>, Increase Your Students with Profitable Group Programs That Don't Burn You Out</h1>
+      <p class="hero-sub">I've worked with 100+ educators and helping professionals, helping them transform from exhausting 1-on-1 work to profitable group programs — so you can build a 6-figure business, serve more people, and reclaim time for what matters most.</p>
+      <a href="#calendly" class="btn btn-teal btn-lg">Book Your Discovery Call</a>
+      <p class="hero-secondary">Limited spots available</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: INTRO
+  ============================================================ -->
+  <section class="section-dark">
+    <div class="container" style="max-width: 780px;">
+      <h2 class="intro-heading">John here.</h2>
+      <div class="intro-body">
+        <p>Let's talk about something I've noticed working with heart-based educators and helping professionals like you... You're passionate about teaching. You're making a real difference in your clients' lives. And you're doing pretty well – bringing in S$8K–10K monthly from your lessons.</p>
+        <p>But here's what might be keeping you up at night:</p>
+
+        <ul class="pain-list">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.15"/><path d="M6 10l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            You're tired of constantly finding new clients
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.15"/><path d="M6 10l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            You're missing out precious family time with back-to-back sessions
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.15"/><path d="M6 10l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            You're working most days — or even burning your weekends with more lessons
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.15"/><path d="M6 10l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            You want to have more clients but you don't know exactly how to get them
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.15"/><path d="M6 10l3 3 5-5" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            You're spending more time marketing your business than actually teaching
+          </li>
+        </ul>
+
+        <p class="intro-close">Sound familiar? I get it. I've been there too. That's exactly why I created this.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: SOLUTION / SPRINTS
+  ============================================================ -->
+  <section class="section-navy">
+    <div class="container">
+      <h2 class="section-heading">Here's the thing…</h2>
+      <p class="section-subhead">I'm working with a group of heart-centered educators, coaches and helping professionals using a simple method to get more clients — fast. To help them earn more while working less, I help them transform their services into scalable digital products like guidebooks, workbooks, and self-help books.</p>
+      <p style="color: var(--white); font-weight: 700; font-size: 18px; margin-bottom: 12px;">But here's the catch — I am only taking a limited number of clients.</p>
+      <p style="color: var(--soft-grey); font-size: 17px; margin-bottom: 8px;">We'll work through this in three focused sprints:</p>
+
+      <div class="sprint-grid">
+        <div class="sprint-card">
+          <div class="sprint-badge">1</div>
+          <h3>Let's Get You Better Clients</h3>
+          <p>You know those dream clients who value your work and are serious about their growth? We're going to help you attract more of them. No more competing based on price or explaining your worth – just perfect-fit clients who get you and are ready to sign up.</p>
+        </div>
+        <div class="sprint-card">
+          <div class="sprint-badge">2</div>
+          <h3>Create Your Income Multiplier</h3>
+          <p>Imagine being able to charge more while working less. You can teach multiple clients at once through group sessions, multiplying your income per hour. Plus, with strategic products working for you 24/7, you're earning even when you're not teaching.</p>
+        </div>
+        <div class="sprint-card">
+          <div class="sprint-badge">3</div>
+          <h3>Increase Your Sales Size</h3>
+          <p>We'll design experiences that turn first-time clients into raving fans who buy more, sign up for higher-priced services and stay longer. All while you're delivering even more value.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: TESTIMONIALS
+  ============================================================ -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-label">Client Results</div>
+      <h2 class="section-heading">Don't just take my word for it.</h2>
+      <p class="section-subhead">Here's what some of our coaching clients have to say after working with me for 6–12 months:</p>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-result">From Struggling To Get Students to Filled Online Workshops Within 5 Days. Made 4X Return On Her Ad Spend.</p>
+          <p class="testimonial-name">Shu Ling</p>
+          <p class="testimonial-role">English Specialist</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">From Losing Students to Securing Over $7000 of Advance Fees In A Month</p>
+          <p class="testimonial-name">Dai Ze</p>
+          <p class="testimonial-role">Pri/Sec Math &amp; Science Tutor</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">From Unstable 1-on-1 Sessions to Consistent Group Revenue</p>
+          <p class="testimonial-name">Feon Tang</p>
+          <p class="testimonial-role">Pri Chinese Tutor</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">Made $3,330! More than 93% Profit! Just from ONE single event.</p>
+          <p class="testimonial-name">Leon</p>
+          <p class="testimonial-role">Sec/JC Chinese Tutor &amp; MasterChef SG S2 Contestant</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">Client base grew from 8 to 32 clients within 2 months. Now making over $8,000 per month</p>
+          <p class="testimonial-name">Fion</p>
+          <p class="testimonial-role">Primary Math Tutor</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">Revenue up by 25% with one single product</p>
+          <p class="testimonial-name">Lup Wai</p>
+          <p class="testimonial-role">Science Tutor &amp; Parent Coach</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">From 8 1-1 Students Scaled to 70 Group Students In 1 Year</p>
+          <p class="testimonial-name">Fion</p>
+          <p class="testimonial-role">Pri Math Tutor</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">First time earning from workshops. Made &gt;$1500 and 2X her revenue</p>
+          <p class="testimonial-name">Meixiu</p>
+          <p class="testimonial-role">Busy mom of 3 young kids</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">I thought this can never happen but now I can get a client for a 12-month program. Total $8230.</p>
+          <p class="testimonial-name">Shirly</p>
+          <p class="testimonial-role">Energy Healer Teacher</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">Heart-based mindset transformation teacher earns 40% more, works 40% less with more family time.</p>
+          <p class="testimonial-name">Sofie</p>
+          <p class="testimonial-role">Mindset Transformation Teacher for C-suite Executives</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">Now have group lessons with more than 5 pax each... charging higher rates... now more new students.</p>
+          <p class="testimonial-name">Crystal</p>
+          <p class="testimonial-role">Primary Math Tutor</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-result">This is one of the best coaching programs I have attended tailored for tutors.</p>
+          <p class="testimonial-name">Tuck Meng</p>
+          <p class="testimonial-role">Sec/JC Math &amp; Physics Tutor</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: GUARANTEE
+  ============================================================ -->
+  <section class="section-navy">
+    <div class="container">
+      <div class="guarantee-box">
+        <!-- Shield / guarantee icon -->
+        <svg class="guarantee-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M36 6L12 16V34C12 48.3 22.56 61.68 36 65C49.44 61.68 60 48.3 60 34V16L36 6Z" fill="rgba(10,191,188,0.15)" stroke="#0ABFBC" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M25 36l8 8 14-16" stroke="#0ABFBC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2>My Promise to You — Your 2X Return On Investment Guarantee</h2>
+        <p>I believe in keeping things simple: If you haven't made back at least 2X your investment after 12 months of putting in the work, I'll keep coaching for free until you do. Simple as that.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: IS THIS FOR YOU
+  ============================================================ -->
+  <section class="section-dark">
+    <div class="container">
+      <h2 class="section-heading">Is this for you?</h2>
+      <p style="color: var(--soft-grey); font-size: 18px; max-width: 640px; margin-bottom: 8px;">Let's be honest — this program isn't for everyone. And that's okay.</p>
+
+      <div class="fit-grid">
+        <div class="fit-card yes">
+          <h3>You'll love this if:</h3>
+          <ul class="fit-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5.5 10l3.5 3.5 5.5-7" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              You're already making S$8K–10K+/month helping people
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5.5 10l3.5 3.5 5.5-7" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              You're willing to invest in your business and personal growth
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5.5 10l3.5 3.5 5.5-7" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              You're open to new ideas and ready to implement them
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5.5 10l3.5 3.5 5.5-7" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              You're coachable and take action quickly
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5.5 10l3.5 3.5 5.5-7" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              You're excited about creating products that scale your impact
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5.5 10l3.5 3.5 5.5-7" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              You know you can earn much more with the right strategies
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5.5 10l3.5 3.5 5.5-7" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              You're willing to commit at least 6 to 12 months
+            </li>
+          </ul>
+        </div>
+
+        <div class="fit-card no">
+          <h3>This isn't for you if:</h3>
+          <ul class="fit-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="rgba(220,50,50,0.15)"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#f47676" stroke-width="2" stroke-linecap="round"/></svg>
+              You're not willing to take action on what you learn
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="rgba(220,50,50,0.15)"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#f47676" stroke-width="2" stroke-linecap="round"/></svg>
+              You're not open to new ideas or feedback
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="rgba(220,50,50,0.15)"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#f47676" stroke-width="2" stroke-linecap="round"/></svg>
+              You're looking for instant results without the work
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="rgba(220,50,50,0.15)"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#f47676" stroke-width="2" stroke-linecap="round"/></svg>
+              You expect a "magic button" solution
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="rgba(220,50,50,0.15)"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#f47676" stroke-width="2" stroke-linecap="round"/></svg>
+              You're not ready to commit to the full program
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: FRAMEWORK
+  ============================================================ -->
+  <section class="section-navy-mid">
+    <div class="container">
+      <h2 class="section-heading">Your Framework with 3 Pillars</h2>
+      <p class="section-subhead">Here is how the coaching program is designed for your success...</p>
+
+      <div class="pillar-grid">
+        <!-- PILLAR 1 -->
+        <div class="pillar-col">
+          <h3>Pillar 1</h3>
+          <div class="pillar-item">
+            <div class="pillar-item-num">1</div>
+            <h4>Signature Offer</h4>
+            <p>Transform your expertise into a high-value, irresistible package that showcases your unique approach. We'll identify your zone of genius and craft an offer that stands out in the marketplace.</p>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-item-num">2</div>
+            <h4>Product Blueprint</h4>
+            <p>Develop a strategic roadmap for your offerings that creates clear pathways for clients and consistent income for you.</p>
+          </div>
+        </div>
+
+        <!-- PILLAR 2 -->
+        <div class="pillar-col">
+          <h3>Pillar 2</h3>
+          <div class="pillar-item">
+            <div class="pillar-item-num">3</div>
+            <h4>AI Authentic Content</h4>
+            <p>Master the art of creating genuine connection through content — without the overwhelm. Learn my AI Authentic Content Workflow to produce weeks of engaging, on-brand material in just hours.</p>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-item-num">4</div>
+            <h4>Get Buy-In</h4>
+            <p>Replace pressure tactics with meaningful dialogue. Learn how to bring all parties into decisions by truly understanding what matters to each person.</p>
+          </div>
+        </div>
+
+        <!-- PILLAR 3 -->
+        <div class="pillar-col">
+          <h3>Pillar 3</h3>
+          <div class="pillar-item">
+            <div class="pillar-item-num">5</div>
+            <h4>Private Consult (1-1)</h4>
+            <p>Attract the right clients through personalized consultations that feel natural and aligned with your values.</p>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-item-num">6</div>
+            <h4>Small/Big Group Connections</h4>
+            <p>Create meaningful collective experiences that attract the right people naturally.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Done-For-You box -->
+      <div class="dfy-box">
+        <h3>6 Done-For-You Services Included:</h3>
+        <ul class="dfy-list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            3/5-step Signature programme
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            7-page Lead magnet
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            10-page Webinar slides
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Content prompt for Claude
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Simple automated form for leads collection
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Simple automated form for existing client feedback
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8: PRICING
+  ============================================================ -->
+  <section class="section-dark">
+    <div class="container">
+      <h2 class="section-heading center">How You'll be Supported</h2>
+      <p style="text-align:center; color: var(--soft-grey); font-size: 18px; margin-bottom: 0;">2 options to choose from</p>
+
+      <div class="pricing-grid">
+        <!-- Card 1 -->
+        <div class="pricing-card">
+          <h3>The Elite Experience</h3>
+          <div class="pricing-price">S$900 <span>/ month</span></div>
+          <div class="pricing-total">6 months · Total: S$5,400</div>
+          <hr class="pricing-divider" />
+          <ul class="pricing-features">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              A 1:1 kickstart call to map out your journey
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              6 Done-For-You Services
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              My personal support when you need it
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              VIP access to training portal
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              All workshops and events
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Group coaching calls
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              24/7 community access
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.2"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Direct access via Telegram
+            </li>
+          </ul>
+          <a href="#calendly" class="btn btn-outline" style="text-align:center; width:100%;">Book a Call</a>
+        </div>
+
+        <!-- Card 2 — Recommended -->
+        <div class="pricing-card recommended">
+          <div class="recommended-badge">Most Popular</div>
+          <h3>The Premium Partnership</h3>
+          <div class="pricing-price">S$1,300 <span>/ month</span></div>
+          <div class="pricing-total">6 months · Total: S$7,800</div>
+          <hr class="pricing-divider" />
+          <ul class="pricing-features">
+            <div class="plus-label">Everything in Elite, PLUS:</div>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              A 1:1 kickstart call to map out your journey
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              6 Done-For-You Services
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              My personal support when you need it
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              VIP access to training portal
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              All workshops and events
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Group coaching calls
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              24/7 community access
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.25"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Direct access via Telegram
+            </li>
+            <li style="color: var(--white); font-weight: 700;">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#0ABFBC" fill-opacity="0.4"/><path d="M4.5 9l3 3 6-6" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              2 private 1:1 strategy &amp; clarity calls per month
+            </li>
+          </ul>
+          <a href="#calendly" class="btn btn-teal" style="text-align:center; width:100%;">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9: ABOUT
+  ============================================================ -->
+  <section class="section-navy">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Placeholder for photo -->
+        <div class="about-avatar">
+          <div class="avatar-placeholder">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="32" r="18" stroke="#0ABFBC" stroke-width="2"/><path d="M10 70c0-16.569 13.431-30 30-30s30 13.431 30 30" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round"/></svg>
+            <p>Photo of John</p>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="about-content">
+          <h2 class="section-heading">A bit about me...</h2>
+          <p class="about-subhead">Hey, I'm John.</p>
+
+          <p>Like you, I'm passionate about making a real difference. With over 7 years in social work supporting single-parent families and over 10 years experience as a tutor &amp; trainer who has:</p>
+
+          <ul class="about-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Built a personal brand in a highly competitive niche
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Written content that has impacted 45,000+ parents
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Sold 6-figure worth of products every year
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Made over $30,000 from one single webinar
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Conducted online regular lessons for 50 students
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Run webinar for 500 parents
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Achieved a 9.1/10 customer satisfaction score
+            </li>
+          </ul>
+
+          <p style="color: var(--white); font-weight: 700; font-size: 17px; margin-top: 24px;">My superpower? Breaking down complex problems into simple, actionable systems.</p>
+
+          <div class="about-personality">
+            <h4>What my clients know about me:</h4>
+            <ul class="about-list">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Introvert who loves to empower other people
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Hands-on dad for my 3 daughters
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Built my business so I can be on standby for them
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0ABFBC" fill-opacity="0.18"/><path d="M5 10l4 4 6-8" stroke="#0ABFBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Enjoy working with self-led partners/clients who are committed
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10: CALENDLY
+  ============================================================ -->
+  <section id="calendly" class="section-dark calendly-section">
+    <div class="container">
+      <h2>Ready to explore what's possible?</h2>
+      <p class="lead">Book a Discovery &amp; Alignment Call with me. We'll explore where you want to take your business, see if we're a good fit, and map out your next steps.</p>
+      <p class="calendly-note">I only work with people who feel a full-body YES! about our partnership.</p>
+
+      <div class="calendly-wrapper">
+        <div class="calendly-inline-widget" data-url="https://calendly.com/johnyeo/bookcall?background_color=0A0F1C&text_color=ffffff&primary_color=0ABFBC" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    Product Architect Coaching &middot; &copy; 2025 &middot; All rights reserved.
+  </footer>
+
+</body>
+</html>
