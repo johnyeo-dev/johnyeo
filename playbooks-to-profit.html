@@ -671,8 +671,10 @@
   #_form_25_ ._form-label,
   #_form_25_._inline-form ._form-label { color: #B8C4D4 !important; font-size: 13px !important; letter-spacing: 0.04em !important; }
   /* Inputs */
-  #_form_25_ ._form_element :is(input[type="text"], input[type="email"], input[type="phone"]),
-  #_form_25_ input[type="text"] {
+  #_form_25_ input[type="text"],
+  #_form_25_ input[type="tel"],
+  #_form_25_ input[type="email"],
+  #_form_25_ ._form_element input {
     background: rgba(255,255,255,0.07) !important;
     border: 1px solid rgba(11,191,188,0.25) !important;
     border-radius: 8px !important;
@@ -680,7 +682,9 @@
     font-size: 16px !important;
     padding: 13px 16px !important;
   }
-  #_form_25_ input[type="text"]::placeholder { color: #6B7A96 !important; }
+  #_form_25_ input[type="text"]::placeholder,
+  #_form_25_ input[type="tel"]::placeholder,
+  #_form_25_ input[type="email"]::placeholder { color: #6B7A96 !important; }
   /* Phone flag */
   #_form_25_ .iti--separate-dial-code .iti__selected-flag {
     background-color: rgba(255,255,255,0.07) !important;
